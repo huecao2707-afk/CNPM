@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quản lý Hiện vật (POI) · Bảo Tàng</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+<div class="app">
+    <div th:replace="~{layout/sidebar}"></div>
+    <main>
+        <div class="top">
+            <span>Dashboard / Quản lý Hiện vật (POI)</span>
+            <div th:replace="~{layout/button_logout}"></div>
+        </div>
+        <div class="content">
+            <h1>Quản lý Hiện vật (POI)</h1><p class="sub">Thêm, sửa, xóa và cấu hình tọa độ GPS cho các hiện vật.</p>
+            <div class="row mb">
+                <input style="max-width:420px" placeholder="🔍 Tìm kiếm tên hiện vật, mã số...">
+                <button type="button" class="btn p" id="btn-add-poi">+ Thêm mới POI</button>
+            </div>
+            <div class="card" style="padding:0">
+                <div class="row" style="padding:16px 20px">
+                    <h2>Danh sách hiện vật </h2>
+                </div>
+                <div class="w"><table>
+                    <thead>
+                        <tr>
+                            <th>Hình ảnh</th>
+                            <th>Mã số</th>
+                            <th>Tên hiện vật</th>
+                            <th>Tọa độ GPS</th>
+                            <th>Geofence</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="poi : ${pois}">
+                        <!-- Cắt chữ cái đầu của poiNameVi -->
+                        <td>
+                            <!-- Trạng thái 1: NẾU CÓ LINK ẢNH trong Database (thêm thẻ <img> và gán th:src) -->
+                            <img th:if="${poi.thumbnailUrl != null and poi.thumbnailUrl != ''}"
+                                 th:src="${poi.thumbnailUrl}"
+                                 style="width: 45px; height: 45px; object-fit: cover; border-radius: 6px;"
+                                 alt="POI Image">
+
+                            <!-- Trạng thái 2: NẾU KHÔNG CÓ LINK ẢNH (Hiển thị chữ cái đầu tiên như cũ) -->
+                            <div class="th"
+                                 th:unless="${poi.thumbnailUrl != null and poi.thumbnailUrl != ''}"
+                                 th:text="${poi.poiNameVi != null ? #strings.substring(poi.poiNameVi, 0, 1).toUpperCase() : 'T'}">
+                            </div>
+                        </td>
+                        <!-- Hiển thị ID (Cắt ngắn 8 ký tự đầu nếu là UUID cho đỡ dài) -->
+                        <td th:text="'#' + ${#strings.substring(poi.poiId, 0, 8)}"></td>
+                        <!-- Tên hiện vật (poiNameVi) -->
+                        <td>
+                            <b th:text="${poi.poiNameVi}">Tên hiện vật</b>
+                            <div class="mu2" th:text="${poi.historicalPeriod != null and poi.historicalPeriod != '' ? poi.historicalPeriod : 'Chưa cập nhật niên đại'}">Thời kỳ</div>                        </td>
+                        <!-- Ghép vĩ độ (latitude) và kinh độ (longitude) -->
+                        <td th:text="${poi.latitude + ', ' + poi.longitude}"></td>
+                        <!-- Bán kính (proximityRadius) -->
+                        <td th:text="${poi.proximityRadius + 'm'}">15m</td>
+                        <!-- Trạng thái (So sánh chuỗi status = 'ACTIVE' hoặc 'Hoạt động') -->
+                        <td>
+                            <span th:if="${poi.status == 'ACTIVE'}" class="tag ok">● Hoạt động</span>
+                            <span th:unless="${poi.status == 'ACTIVE'}" class="tag mu">○ Đang ẩn</span>
+                        </td>
+                        <!-- Nút thao tác (Gắn đúng ID và Name) -->
+                        <td>
+                            <a class="btn btn-edit" href="javascript:void(0)"
+                               th:data-id="${poi.poiId}"
+                               th:data-name="${poi.poiNameVi}"
+                               th:data-period="${poi.historicalPeriod}"
+                               th:data-lat="${poi.latitude}"
+                               th:data-lng="${poi.longitude}"
+                               th:data-radius="${poi.proximityRadius}"
+                               th:data-status="${poi.status}"
+                               th:data-thumbnail="${poi.thumbnailUrl}"
+                               th:data-createdat="${poi.createdAt != null ? #dates.format(poi.createdAt, 'yyyy-MM-dd''T''HH:mm') : ''}">✎</a>
+                            <a class="btn" th:href="@{'/poi-manage/preview/' + ${poi.poiId}}">▶</a>
+                            <a class="btn btn-delete" href="javascript:void(0)"
+                               th:data-id="${poi.poiId}" th:data-name="${poi.poiNameVi}" style="color:var(--br)">🗑</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+                <div class="row" style="padding:14px 20px"><span class="mu2">Hiển thị 1–4 trên tổng số 4 hiện vật</span><span class="tag br">1</span></div>
+            </div>
+        </div>
+    </main>
+</div>
+<div th:replace="~{layout/form}"></div>
+<script th:src="@{/js/admin-charts.js}"></script>
+</body>
+</html>

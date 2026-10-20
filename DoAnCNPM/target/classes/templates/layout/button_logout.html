@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="user-actions" style="display: flex; align-items: center; gap: 12px;">
+    <span class="badge" style="background: #fee2e2; color: #dc2626; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Quản trị viên</span>
+
+    <!-- Nút Đăng xuất -->
+    <form th:action="@{/logout}" method="post" style="margin: 0;">
+        <button type="submit" class="btn-logout" style="background: #ffffff; border: 1px solid #cbd5e1; padding: 6px 14px; border-radius: 6px; cursor: pointer; color: #475569; font-weight: 500;">
+            Đăng xuất
+        </button>
+    </form>
+</div>
+</body>
+<script th:src="@{/js/admin-charts.js}"></script>
+</html>

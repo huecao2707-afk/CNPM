@@ -1,0 +1,235 @@
+:root {
+    --brand-primary: #8F2B15;
+    --brand-brass: #C49A2B;
+    --background-canvas: #FAF8F3;
+    --surface-card: #FFFFFF;
+    --surface-emblem: #2A2725;
+    --text-primary: #1E1C1B;
+    --text-secondary: #6B6560;
+    --text-on-dark: #FFFFFF;
+    --text-on-dark-muted: #9A948A;
+    --border-default: #E7E2D9;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+body { background: var(--background-canvas); color: var(--text-primary); }
+
+/* =========================================
+   BỐ CỤC CHUNG (MẶC ĐỊNH LÀ DESKTOP)
+   ========================================= */
+.login-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* --- SIDEBAR TRÁI --- */
+.sidebar {
+    width: 45%;
+    max-width: 648px;
+    background: linear-gradient(135deg, #1E1C1B 0%, #2A2725 100%);
+    padding: 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid var(--border-default);
+    position: relative;
+    overflow: hidden;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo { width: 48px; height: 48px; background: var(--surface-emblem); border-radius: 8px; display: flex; justify-content: center; align-items: center; }
+.logo-inner { width: 20px; height: 22px; border: 1.6px solid var(--brand-brass); }
+.brand-text .title { color: var(--text-on-dark); font-size: 20px; font-weight: 700; letter-spacing: 1.1px; }
+.brand-text .subtitle { color: var(--text-on-dark-muted); font-size: 12px; }
+
+.desktop-promo { display: flex; flex-direction: column; gap: 24px; margin-top: 40px; }
+.promo-tag { display: flex; align-items: center; gap: 8px; color: var(--text-on-dark-muted); font-size: 12px; font-weight: 500; letter-spacing: 1.8px; }
+.promo-tag .line { width: 24px; height: 1px; background: var(--brand-brass); }
+.desktop-promo h2 { color: var(--text-on-dark); font-size: 44px; font-weight: 700; line-height: 1.2; }
+.desktop-promo p { color: var(--text-on-dark-muted); font-size: 16px; line-height: 1.6; max-width: 464px; }
+
+/* Đồ họa trang trí tĩnh */
+.graphics { position: relative; height: 224px; margin-top: 32px; }
+.circle { position: absolute; border-radius: 50%; border: 1px solid var(--brand-brass); }
+.c1 { width: 228px; height: 228px; left: 266px; top: 12px; opacity: 0.18; }
+.c2 { width: 154px; height: 154px; left: 303px; top: 49px; opacity: 0.12; }
+.box { position: absolute; }
+.b1 { width: 488px; height: 180px; left: 0; top: 22px; border: 1px solid var(--brand-brass); opacity: 0.23; }
+.b2 { width: 430px; height: 148px; left: 0; top: 42px; border: 2px solid var(--brand-primary); opacity: 0.65; }
+
+.version { display: flex; align-items: center; justify-content: space-between; color: var(--text-on-dark-muted); font-size: 12px; letter-spacing: 1.2px; }
+.version .line { width: 40px; height: 2px; background: var(--brand-brass); opacity: 0.55; }
+.mobile-only { display: none; }
+
+/* --- NỘI DUNG CHÍNH (FORM) --- */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+.form-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--surface-card);
+    padding: 32px;
+    border-radius: 10px;
+    border: 1px solid var(--border-default);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.form-header p { color: var(--text-secondary); font-size: 14px; }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.form-group label { font-size: 14px; font-weight: 600; }
+.input-wrapper { display: flex; align-items: center; border: 1px solid var(--border-default); border-radius: 8px; height: 44px; padding: 0 12px; }
+.input-wrapper input { flex: 1; border: none; outline: none; font-size: 14px; background: transparent; }
+.eye-icon { color: var(--text-secondary); cursor: pointer; }
+
+.form-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.checkbox-container { display: flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; }
+.checkbox-container input { accent-color: var(--brand-primary); width: 16px; height: 16px; cursor: pointer; }
+.forgot-pw { color: var(--brand-primary); font-size: 14px; font-weight: 600; text-decoration: none; }
+
+.btn-login { width: 100%; height: 48px; background: var(--brand-primary); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; letter-spacing: 0.5px; cursor: pointer; margin-bottom: 16px; transition: 0.2s; }
+.btn-login:hover { opacity: 0.9; }
+
+.security-note { display: flex; gap: 8px; padding-top: 16px; border-top: 1px solid var(--border-default); color: var(--text-secondary); font-size: 12px; line-height: 1.5; }
+.security-note svg { flex-shrink: 0; }
+
+.footer-links { margin-top: 24px; text-align: center; font-size: 14px; color: var(--text-secondary); }
+.footer-links a { color: var(--brand-primary); font-weight: 600; text-decoration: none; margin-left: 4px; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+/* =========================================
+   BỐ CỤC MOBILE (MÀN HÌNH NHỎ HƠN 900px)
+   ========================================= */
+@media (max-width: 900px) {
+    .login-container {
+        flex-direction: column;
+        background: linear-gradient(135deg, #FAF8F3 0%, #F3EFE7 100%);
+    }
+
+    /* Đổi Sidebar thành Header nhỏ trên cùng */
+    .sidebar {
+        width: 100%;
+        max-width: 100%;
+        background: transparent;
+        padding: 40px 24px 20px 24px;
+        border: none;
+    }
+    .brand-text .title { color: var(--text-primary); }
+    .brand-text .subtitle { color: var(--text-secondary); }
+
+    /* Ẩn nội dung trang trí của Desktop */
+    .desktop-promo, .desktop-only { display: none; }
+    .mobile-only { display: block; text-align: center; margin-top: 40px; color: var(--text-secondary); font-size: 12px; letter-spacing: 1.1px; }
+
+    .main-content { padding: 0 24px 40px 24px; justify-content: flex-start; }
+    .form-card { padding: 24px; }
+}
+/* =========================================
+   1. CÁC TRẠNG THÁI CỦA Ô NHẬP LIỆU (INPUTS)
+   ========================================= */
+/* Trạng thái Mặc định */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-default, #E7E2D9);
+    border-radius: 8px;
+    height: 44px;
+    padding: 0 12px;
+    background: var(--surface-card, #FFF);
+    transition: all 0.2s ease;
+}
+
+/* Trạng thái Đang chọn (Focus) */
+.input-wrapper:focus-within {
+    border-color: var(--brand-primary, #8F2B15);
+    background: var(--surface-card, #FFF);
+}
+
+/* Trạng thái Lỗi xác thực (Error) */
+.input-wrapper.has-error {
+    border-color: #D32F2F !important; /* Màu đỏ báo lỗi */
+    background: #FFFAFA;
+}
+
+/* Dòng chữ báo lỗi nhỏ dưới ô input */
+.error-text {
+    color: #D32F2F;
+    font-size: 12px;
+    margin-top: 6px;
+    display: none; /* Mặc định ẩn */
+}
+.input-wrapper.has-error + .error-text {
+    display: block; /* Hiện ra khi input có class has-error */
+}
+
+
+/* =========================================
+   2. CÁC TRẠNG THÁI CỦA NÚT BẤM (BUTTON)
+   ========================================= */
+/* Trạng thái Mặc định (Chưa nhập đủ thông tin / Disabled) */
+.btn-login {
+    width: 100%;
+    height: 48px;
+    background: var(--border-default, #E7E2D9);
+    color: var(--text-secondary, #6B6560);
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: not-allowed; /* Biểu tượng cấm click */
+    margin-bottom: 16px;
+    transition: background 0.2s ease, color 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Trạng thái Đã điền đủ thông tin (Active) */
+.btn-login.is-active {
+    background: var(--brand-primary, #8F2B15);
+    color: white;
+    cursor: pointer;
+}
+
+/* Trạng thái rê chuột (Hover) - Nút màu đen xám đậm theo thiết kế */
+.btn-login.is-active:hover {
+    background: #1E1C1B;
+}
+
+/* Trạng thái Đang xử lý (Loading) */
+.btn-login.is-loading {
+    background: #F4EBE8; /* Màu nền đỏ nhạt */
+    color: var(--brand-primary, #8F2B15);
+    cursor: wait;
+    pointer-events: none; /* Chặn click đúp */
+}
+
+/* =========================================
+   3. KHỐI THÔNG BÁO LỖI (BANNER LỖI)
+   ========================================= */
+.error-banner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: #FDF0ED;
+    border: 1px solid #F6D6D0;
+    border-radius: 8px;
+    color: #D32F2F;
+    font-size: 13px;
+    margin-bottom: 16px;
+    line-height: 1.4;
+}

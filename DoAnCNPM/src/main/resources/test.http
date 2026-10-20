@@ -1,0 +1,55 @@
+### 1. LẤY DANH SÁCH HIỆN VẬT (READ ALL)
+# Trả về mảng JSON chứa tất cả POI
+GET http://localhost:8080/poi-manage/api
+Accept: application/json
+
+###
+
+### 2. THÊM MỚI HIỆN VẬT (CREATE)
+# Gửi data JSON để tạo mới. Click vào nút Play màu xanh bên lề trái để chạy
+POST http://localhost:8080/poi-manage/api
+Content-Type: application/json
+
+
+  {
+    "poiNameVi": "Trống đồng Ngọc Lũ 4",
+    "latitude": 10.1234,
+    "longitude": 106.5678,
+    "proximityRadius": 20.0,
+    "status": "Hoạt động"
+  }
+
+###
+
+### 3. LẤY CHI TIẾT 1 HIỆN VẬT THEO ID (READ ONE)
+# Giả sử ID của hiện vật vừa thêm là 1
+GET http://localhost:8080/api/poi-manage/79f76d5f-78cc-4a9a-9e09-38685f71e04a
+Accept: application/json
+
+###
+
+### 4. CẬP NHẬT HIỆN VẬT (UPDATE)
+# Sửa thông tin hiện vật có ID là
+#577753e0-dbc7-4570-a203-c018a582d671
+#7c66e4c4-1a92-440d-9e70-70800b26c766
+#7f4f05f1-c4ed-49b0-9234-8f0c5e3b828b
+#91ee30b6-98ec-44aa-95ac-4cf384f071ab
+PUT http://localhost:8080/poi-manage/api/577753e0-dbc7-4570-a203-c018a582d671
+
+Content-Type: application/json
+
+{
+  "poiNameVi": "Trống đồng Ngọc Lũ 1",
+  "period": "Văn hóa Đông Sơn",
+  "latitude": 10.1234,
+  "longitude": 106.5678,
+  "proximityRadius": 20.0,
+  "status": "ACTIVE"
+}
+
+###
+
+### 5. XÓA HIỆN VẬT (DELETE)
+# Lưu ý: Trong PoisController hiện tại của bạn chưa có hàm Xóa.
+# Bạn cần viết thêm @DeleteMapping("/{poiId}") trong Controller để endpoint này hoạt động.
+DELETE http://localhost:8080/api/poi-manage/79f76d5f-78cc-4a9a-9e09-38685f71e04a

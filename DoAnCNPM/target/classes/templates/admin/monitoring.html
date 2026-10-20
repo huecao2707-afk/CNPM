@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thống kê hệ thống · Bảo Tàng</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+<div class="app">
+    <div th:replace="~{layout/sidebar}"></div>
+    <main>
+        <div class="top">
+            <span>Dashboard / Thống kê hệ thống</span>
+            <div th:replace="~{layout/button_logout}"></div>
+        </div>
+        <div class="content">
+            <div class="row"><div><h1>Thống kê hệ thống</h1><p class="sub">Tổng quan hoạt động, doanh thu và sức khỏe hệ thống bảo tàng.</p></div><span class="btn">Hôm nay · 11.10.2026</span></div>
+            <div class="grid4">
+                <div class="card"><span class="sub">Du khách đang hoạt động</span><div class="big">142</div><span class="mu2">Đang tham quan trên ứng dụng</span></div>
+                <div class="card"><span class="sub">Doanh thu hôm nay</span><div class="big">12.450.000 ₫</div><span class="mu2">249 vé · Payoo &amp; tiền mặt</span></div>
+                <div class="card"><span class="sub">Trạng thái Chatbot AI</span><div class="big" style="color:var(--er)">Có lỗi timeout</div><span class="mu2">Xem nhật ký hệ thống</span></div>
+                <div class="card"><span class="sub">Lỗi hệ thống</span><div class="big" style="color:var(--er)">1</div><span class="mu2">Cần kiểm tra ngay</span></div>
+            </div>
+            <div class="g2">
+                <div class="card">
+                    <div class="row"><h2>Doanh thu theo giờ</h2><span class="tag ok">● Trực tiếp</span></div>
+                    <span class="mu2">Triệu VNĐ · Hôm nay</span>
+                    <div class="chart">
+                        <div class="bars"><i class="p1" style="height:27.5%"></i><i class="p2" style="height:15%"></i></div>
+                        <div class="bars"><i class="p1" style="height:45%"></i><i class="p2" style="height:32.5%"></i></div>
+                        <div class="bars"><i class="p1" style="height:80%"></i><i class="p2" style="height:45%"></i></div>
+                        <div class="bars"><i class="p1" style="height:72.5%"></i><i class="p2" style="height:37.5%"></i></div>
+                        <div class="bars"><i class="p1" style="height:40%"></i><i class="p2" style="height:25%"></i></div>
+                        <div class="bars"><i class="p1" style="height:62.5%"></i><i class="p2" style="height:40%"></i></div>
+                        <div class="bars"><i class="p1" style="height:55%"></i><i class="p2" style="height:45%"></i></div>
+                    </div>
+                    <div class="xl"><span>08:00</span><span>09:00</span><span>10:00</span><span>11:00</span><span>12:00</span><span>13:00</span><span>14:00</span></div>
+                    <div class="lg"><span><i class="p1"></i>Payoo 7.650.000 ₫ (61,4%)</span><span><i class="p2"></i>Tiền mặt 4.800.000 ₫ (38,6%)</span></div>
+                </div>
+                <div class="card">
+                    <h2>Cảnh báo hệ thống &amp; Log lưu lượng</h2>
+                    <div class="w"><table>
+                        <tr><th>Thời gian</th><th>Sự kiện</th><th>Trạng thái</th></tr>
+                        <tr><td>14:31:48</td><td><b>API /chat · phản hồi 1.2s</b><div class="mu2">200 OK · 86 yêu cầu/phút</div></td><td><span class="tag ok">Ổn định</span></td></tr>
+                        <tr><td>14:30:12</td><td><b>GPS yếu · bật chế độ offline</b><div class="mu2">Thiết bị V-104 · Khu trưng bày B</div></td><td><span class="tag wn">Fallback</span></td></tr>
+                        <tr><td>14:28:36</td><td><b>Payoo · xác nhận thanh toán</b><div class="mu2">GD #PY2048 · 150.000 ₫</div></td><td><span class="tag ok">Thành công</span></td></tr>
+                        <tr><td>14:26:05</td><td><b>AI dịch · hoàn tất đồng bộ</b><div class="mu2">POI-028 · vi / en / fr · 1.1s</div></td><td><span class="tag mu">Hoàn tất</span></td></tr>
+                    </table></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script th:src="@{/js/admin-charts.js}"></script>
+</body>
+</html>

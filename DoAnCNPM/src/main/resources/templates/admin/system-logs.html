@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nhật ký hệ thống · Bảo Tàng</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+<div class="app">
+    <div th:replace="~{layout/sidebar}"></div>
+    <main>
+        <div class="top">
+            <span>Dashboard / Nhật ký hệ thống</span>
+            <div th:replace="~{layout/button_logout}"></div>
+        </div>
+        <div class="content">
+            <div class="row"><div><h1>Nhật ký hệ thống &amp; Cảnh báo</h1><p class="sub">Theo dõi sự kiện vận hành, kiểm tra lỗi và truy vết theo dịch vụ.</p></div><a class="btn" href="#">⤓ Xuất Log (CSV)</a></div>
+            <div class="card row mb">
+                <div style="width:220px"><label style="margin-top:0">Mức độ</label><select><option>All</option><option>INFO</option><option>WARN</option><option>ERROR</option></select></div>
+                <div style="text-align:right"><b>3 sự kiện được ghi nhận</b><div class="mu2">Cập nhật lần cuối: 14:35:12 · Tự động cập nhật mỗi 30 giây</div></div>
+            </div>
+            <div class="g2" style="margin-top:0">
+                <div class="card" style="padding:0"><div class="w"><table>
+                    <tr><th>Thời gian</th><th>Mức độ</th><th>Dịch vụ</th><th>Nội dung Log chi tiết</th></tr>
+                    <tr class="sel"><td>14:35:12</td><td><span class="tag er">ERROR</span></td><td>Chatbot</td><td><code>API Chatbot: Timeout connecting to Azure OpenAI GPT-4o.</code></td></tr>
+                    <tr><td>14:30:05</td><td><span class="tag wn">WARN</span></td><td>GPS</td><td><code>GPS Engine: Fallback to offline mode triggered for Device X.</code></td></tr>
+                    <tr><td>14:28:00</td><td><span class="tag in">INFO</span></td><td>Payment</td><td><code>Payment: Webhook confirmed transaction #PY8892 successfully.</code></td></tr>
+                </table></div>
+                    <div class="row" style="padding:14px 20px"><span class="mu2">Hiển thị 1–3 trên tổng số 3 sự kiện</span><span class="tag br">1</span></div></div>
+                <div class="card">
+                    <h2>Chi tiết sự kiện</h2>
+                    <p><span class="tag er">ERROR</span> <span class="mu2">Chatbot · 14:35:12</span></p>
+                    <p>API Chatbot: Timeout connecting to Azure OpenAI GPT-4o.</p>
+                    <b class="mu2">RAW STACK TRACE</b>
+                    <pre>TimeoutError: Azure OpenAI
+Connection timed out after 30000ms
+  at AzureClient.request (azure-client.ts:148:19)
+  at ChatbotService.generate (chatbot.service.ts:82:11)
+  at async POST /api/chat
+
+model: gpt-4o
+request_id: chat-042-143512</pre>
+                    <span class="mu2">event_id: ERR-20261011-001</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script th:src="@{/js/admin-charts.js}"></script>
+</body>
+</html>

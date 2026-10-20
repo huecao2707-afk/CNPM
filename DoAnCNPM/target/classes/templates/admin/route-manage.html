@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quản lý Tuyến Tham Quan · Bảo Tàng</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+<div class="app">
+    <div th:replace="~{layout/sidebar}"></div>
+    <main>
+        <div class="top">
+            <span>Dashboard / Quản lý Tuyến Tham Quan</span>
+            <div th:replace="~{layout/button_logout}"></div>
+        </div>
+        <div class="content">
+            <div class="row"><div><h1>Quản lý Tuyến Tham Quan</h1><p class="sub">Thiết kế lộ trình, sắp xếp điểm dừng và xem trước tuyến tham quan.</p></div><a class="btn p" href="#">+ Tạo Lộ Trình Mới</a></div>
+            <div class="g2" style="margin-top:0">
+                <div class="card">
+                    <div class="row"><h2>Cấu hình lộ trình</h2><span class="tag mu">Bản nháp</span></div>
+                    <label>Tên Lộ Trình</label><input value="Tour Tiêu Biểu">
+                    <label>Thời lượng dự kiến</label><input value="45 phút">
+                    <label>Các điểm dừng đã chọn · 3 POI</label>
+                    <div class="stop"><span class="n">1</span><div><b>Trống đồng Cảnh Thịnh</b><div class="mu2">#042 · Phòng A · 15 phút</div></div><a class="btn" href="#">✕</a></div>
+                    <div class="stop"><span class="n">2</span><div><b>Tượng Bồ Tát Tara</b><div class="mu2">#015 · Phòng B · 15 phút</div></div><a class="btn" href="#">✕</a></div>
+                    <div class="stop"><span class="n">3</span><div><b>Gốm Chu Đậu</b><div class="mu2">#088 · Phòng C · 15 phút</div></div><a class="btn" href="#">✕</a></div>
+                    <a class="btn" href="#" style="display:block;text-align:center;border-style:dashed;color:var(--br)">+ Thêm điểm dừng</a>
+                </div>
+                <div class="card">
+                    <div class="row"><h2>Xem trước trên bản đồ</h2><span class="tag mu">Tầng 1</span></div>
+                    <span class="mu2">Sơ đồ bảo tàng · Tuyến tham quan theo thứ tự 1 → 2 → 3</span>
+                    <svg viewBox="0 0 600 340" style="width:100%;margin-top:12px;background:var(--soft);border-radius:8px">
+                        <rect class="r" x="20" y="20" width="260" height="130" rx="6"/><text x="32" y="42">PHÒNG A · LỊCH SỬ</text>
+                        <rect class="r" x="320" y="20" width="260" height="130" rx="6"/><text x="332" y="42">PHÒNG B · ĐIÊU KHẮC</text>
+                        <rect class="r" x="20" y="190" width="260" height="130" rx="6"/><text x="32" y="212">SẢNH ĐÓN TIẾP</text><text x="150" y="260" text-anchor="middle">Lối vào chính</text>
+                        <rect class="r" x="320" y="190" width="260" height="130" rx="6"/><text x="332" y="212">PHÒNG C · GỐM SỨ</text>
+                        <polyline points="150,80 450,80 450,250" fill="none" stroke="#8f2b15" stroke-width="3" stroke-dasharray="7 5"/>
+                        <circle class="nd" cx="150" cy="80" r="13"/><text class="nt" x="150" y="85">1</text><text x="150" y="58" text-anchor="middle">Trống đồng Cảnh Thịnh</text>
+                        <circle class="nd" cx="450" cy="80" r="13"/><text class="nt" x="450" y="85">2</text><text x="450" y="58" text-anchor="middle">Tượng Bồ Tát Tara</text>
+                        <circle class="nd" cx="450" cy="250" r="13"/><text class="nt" x="450" y="255">3</text><text x="450" y="228" text-anchor="middle">Gốm Chu Đậu</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="card row" style="margin-top:16px"><b>Tổng cộng: 3 điểm dừng · Dự kiến: 45 phút</b><a class="btn p" href="#">Lưu Cấu Hình Lộ Trình</a></div>
+        </div>
+    </main>
+</div>
+<script th:src="@{/js/admin-charts.js}"></script>
+</body>
+</html>

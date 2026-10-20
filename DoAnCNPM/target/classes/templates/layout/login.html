@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập · Hệ thống Bảo tàng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<div class="login-container">
+    <!-- Cột trái (Desktop) / Phần Header (Mobile) -->
+    <div class="sidebar">
+        <div class="brand">
+            <div class="logo">
+                <div class="logo-inner"></div>
+            </div>
+            <div class="brand-text">
+                <div class="title">BẢO TÀNG</div>
+                <div class="subtitle">Hệ thống thông minh</div>
+            </div>
+        </div>
+
+        <!-- Nội dung này chỉ hiện trên Desktop -->
+        <div class="desktop-promo">
+            <div class="promo-tag">
+                <div class="line"></div>
+                <span>KHÔNG GIAN QUẢN TRỊ</span>
+            </div>
+            <h2>Không gian dùng chung cho du khách và quản trị</h2>
+            <p>Cùng một cổng đăng nhập, du khách khám phá lịch sử và quản trị viên theo dõi hoạt động bảo tàng mọi lúc.</p>
+
+            <!-- Các vòng tròn trang trí -->
+            <div class="graphics">
+                <div class="circle c1"></div>
+                <div class="circle c2"></div>
+                <div class="box b1"></div>
+                <div class="box b2"></div>
+                <div class="dot d1"></div>
+                <div class="dot d2"></div>
+            </div>
+        </div>
+
+        <div class="version desktop-only">
+            <span>MUSEUM OPS · v2.4</span>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <!-- Cột phải (Phần form đăng nhập chính) -->
+    <div class="main-content">
+        <div class="form-card">
+            <div class="form-header">
+                <h1>Đăng nhập</h1>
+                <p>Dùng tài khoản được cấp để truy cập hệ thống.</p>
+            </div>
+
+            <!-- 1. BANNER BÁO LỖI MỚI (Thay cho cái cũ) -->
+            <div th:if="${param.error}" class="error-banner">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <span>Đăng nhập không thành công. Vui lòng kiểm tra lại thông tin.</span>
+            </div>
+            <div th:if="${param.logout}" style="padding: 12px; background: #dcfce3; color: #15803d; border-radius: 8px; font-size: 14px; text-align: center; border: 1px solid #86efac; margin-bottom: 16px;">
+                Bạn đã đăng xuất thành công.
+            </div>
+
+            <form class="login-form" th:action="@{/login}" method="POST">
+
+                <!-- 2. Ô NHẬP TÊN ĐĂNG NHẬP (Đã thêm th:classappend và thẻ error-text) -->
+                <div class="form-group">
+                    <label>Tên đăng nhập hoặc Email</label>
+                    <div class="input-wrapper" th:classappend="${param.error} ? 'has-error' : ''">
+                        <input type="text" name="username" placeholder="admin@baotang.vn" required>
+                    </div>
+                    <div class="error-text">Tên đăng nhập không đúng.</div>
+                </div>
+
+                <!-- 3. Ô NHẬP MẬT KHẨU (Đã thêm th:classappend và thẻ error-text) -->
+                <div class="form-group">
+                    <label>Mật khẩu</label>
+                    <div class="input-wrapper" th:classappend="${param.error} ? 'has-error' : ''">
+                        <input type="password" name="password" placeholder="Nhập mật khẩu" required>
+                        <svg class="eye-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                            <path d="M10 14.17c-3.33 0-6.67-2.5-8.33-4.17C3.33 8.33 6.67 5.83 10 5.83s6.67 2.5 8.33 4.17c-1.66 1.67-5 4.17-8.33 4.17z" stroke-width="1.5"/>
+                            <circle cx="10" cy="10" r="2.5" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <div class="error-text">Mật khẩu không đúng.</div>
+                </div>
+
+                <!-- Phần Checkbox, Quên mật khẩu và Nút đăng nhập giữ nguyên... -->
+                <div class="form-actions">
+                    <label class="checkbox-container">
+                        <input type="checkbox" name="remember-me" checked>
+                        <span class="checkmark"></span>
+                        Ghi nhớ đăng nhập
+                    </label>
+                    <a href="#" class="forgot-pw">Quên mật khẩu?</a>
+                </div>
+
+                <button type="submit" class="btn-login">ĐĂNG NHẬP</button>
+            </form>
+
+            <div class="security-note">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+                    <path d="M8 2.67L2.67 5.33v4c0 3.34 2.66 6 5.33 6s5.33-2.66 5.33-6v-4L8 2.67z" stroke-width="1.5"/>
+                </svg>
+                <p>Mọi thao tác đăng nhập được ghi nhận trong nhật ký hệ thống.</p>
+            </div>
+        </div>
+        <div class="footer-links">
+            <span>Chưa có tài khoản?</span>
+            <a href="#">Liên hệ quản trị viên.</a>
+        </div>
+
+        <div class="version mobile-only">MUSEUM OPS · v2.4</div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('.login-form');
+        const inputUser = document.querySelector('input[name="username"]');
+        const inputPass = document.querySelector('input[name="password"]');
+        const btnSubmit = document.querySelector('.btn-login');
+
+        // Mở khóa nút bấm khi đã nhập đủ 2 trường (Trạng thái Đã điền)
+        function checkInputs() {
+            if (inputUser.value.trim() !== '' && inputPass.value.trim() !== '') {
+                btnSubmit.classList.add('is-active');
+                btnSubmit.removeAttribute('disabled');
+            } else {
+                btnSubmit.classList.remove('is-active');
+                btnSubmit.setAttribute('disabled', 'true');
+            }
+        }
+
+        inputUser.addEventListener('input', checkInputs);
+        inputPass.addEventListener('input', checkInputs);
+
+        // Đổi sang trạng thái Đang xử lý (Loading) khi submit
+        form.addEventListener('submit', () => {
+            btnSubmit.classList.remove('is-active');
+            btnSubmit.classList.add('is-loading');
+            // Thay đổi nội dung nút bằng icon xoay và chữ
+            btnSubmit.innerHTML = `
+            <svg class="spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation: spin 1s linear infinite;">
+                <circle cx="12" cy="12" r="10" stroke-dasharray="30" stroke-dashoffset="0"></circle>
+            </svg>
+            Đang đăng nhập...
+        `;
+        });
+    });
+</script>
+</body>
+</html>

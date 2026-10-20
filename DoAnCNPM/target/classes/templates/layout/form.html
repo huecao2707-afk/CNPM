@@ -1,0 +1,55 @@
+<div id="poi-modal" class="modal-overlay" style="display:none;">
+    <div class="modal-content">
+        <h3 id="modal-title">Tiêu đề</h3>
+        <form id="poi-form">
+            <!-- ID ẩn dùng cho Sửa/Xóa -->
+            <input type="hidden" id="modal-poi-id">
+
+            <!-- Khu vực nhập liệu (Sẽ bị ẩn đi nếu là thao tác Xóa) -->
+            <div id="modal-inputs">
+                <div class="form-group">
+                    <label>Tên hiện vật:</label>
+                    <input type="text" id="modal-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Tọa độ (Vĩ độ, Kinh độ):</label>
+                    <div style="display:flex; gap:10px;">
+                        <input type="number" step="any" id="modal-lat" placeholder="Vĩ độ" required>
+                        <input type="number" step="any" id="modal-lng" placeholder="Kinh độ" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Bán kính (m):</label>
+                    <input type="number" id="modal-radius" required>
+                </div>
+                <div class="form-group">
+                    <label>Link hình ảnh (URL):</label>
+                    <input type="text" id="modal-thumbnailUrl" placeholder="https://domain.com/image.jpg">
+                </div>
+                <div class="form-group">
+                    <label>Niên đại / Thời kỳ:</label>
+                    <input type="text" id="modal-historicalPeriod" placeholder="Ví dụ: Thời Tây Sơn · Thế kỷ 18">
+                </div>
+                <div class="form-group">
+                    <label>Trạng thái:</label>
+                    <select id="modal-status">
+                        <option value="ACTIVE">Hoạt động</option>
+                        <option value="INACTIVE">Đang ẩn</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Thông báo Xóa -->
+            <div id="modal-delete-msg" style="display:none; color:red;">
+                Bạn có chắc chắn muốn xóa hiện vật "<b id="delete-poi-name"></b>" không?<br>Hành động này không thể hoàn tác.
+            </div>
+
+            <!-- Các nút bấm -->
+            <div class="modal-actions">
+                <button type="button" class="btn" onclick="closeModal()">Hủy</button>
+                <button type="submit" class="btn p" id="btn-modal-save">Lưu</button>
+                <button type="button" class="btn" id="btn-modal-delete" style="display:none; background:#e74c3c; color:white; border:none;">Xóa ngay</button>
+            </div>
+        </form>
+    </div>
+</div>
